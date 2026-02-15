@@ -1,0 +1,64 @@
+<!--
+  Eato - 用餐记录页面
+-->
+<view class="page">
+  <nav-bar title="用餐记录" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 记录列表 -->
+    <view class="history-list" wx:if="{{records.length > 0}}">
+      <view class="date-group" wx:for="{{groupedRecords}}" wx:key="date">
+        <text class="date-label">{{item.date}}</text>
+        <view class="records">
+          <glass-card 
+            className="record-card"
+            wx:for="{{item.records}}"
+            wx:for-item="record"
+            wx:key="id"
+          >
+            <view class="record-content">
+              <view class="record-header">
+                <text class="record-name">{{record.restaurantName}}</text>
+                <text class="record-time">{{record.time}}</text>
+              </view>
+              <view class="record-meta">
+                <view class="meta-item">
+                  <image src="/assets/icons/users.svg" mode="aspectFit" />
+                  <text>{{record.peopleCount}}人</text>
+                </view>
+                <view class="meta-item">
+                  <image src="/assets/icons/wallet.svg" mode="aspectFit" />
+                  <text>¥{{record.totalPrice}}</text>
+                </view>
+                <view class="rating-stars" wx:if="{{record.rating}}">
+                  <image 
+                    wx:for="{{5}}" 
+                    wx:for-item="star" 
+                    wx:key="*this"
+                    src="/assets/icons/star.svg" 
+                    class="{{star < record.rating ? 'active' : ''}}"
+                    mode="aspectFit" 
+                  />
+                </view>
+              </view>
+              <text class="record-dishes" wx:if="{{record.dishes}}">{{record.dishes}}</text>
+            </view>
+          </glass-card>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{records.length === 0}}">
+      <view class="empty-icon">
+        <image src="/assets/icons/clock.svg" mode="aspectFit" />
+      </view>
+      <text class="empty-title">暂无用餐记录</text>
+      <text class="empty-desc">使用推荐功能后，用餐记录会自动保存</text>
+    </view>
+
+    <!-- 底部安全区域 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
+

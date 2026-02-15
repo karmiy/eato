@@ -1,0 +1,116 @@
+<!--
+  Eato - 点什么菜页面
+  拍摄/上传菜单，AI 智能推荐
+-->
+<view class="page">
+  <!-- 固定顶部导航 -->
+  <view class="header-fixed" style="padding-top: {{statusBarHeight}}px;">
+    <view class="header">
+      <view class="header-content">
+        <text class="page-title">点什么菜</text>
+        <text class="page-subtitle">拍摄菜单，AI 帮你选</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 顶部占位 -->
+  <view class="header-placeholder" style="height: {{statusBarHeight + 50}}px;"></view>
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 扫描菜单入口 -->
+    <glass-card className="scan-card" bindtap="scanMenu">
+      <view class="scan-inner">
+        <view class="scan-orb">
+          <view class="orb-inner">
+            <image src="/assets/icons/camera.svg" class="orb-icon" mode="aspectFit" />
+          </view>
+          <view class="orb-ring ring-1"></view>
+          <view class="orb-ring ring-2"></view>
+          <view class="orb-ring ring-3"></view>
+        </view>
+        <view class="scan-text">
+          <text class="scan-title">拍摄菜单</text>
+          <text class="scan-hint">或从相册选择菜单图片</text>
+        </view>
+      </view>
+    </glass-card>
+
+    <!-- 功能说明 -->
+    <view class="features-section">
+      <view class="section-header">
+        <view class="section-badge">
+          <image src="/assets/icons/sparkles.svg" mode="aspectFit" />
+        </view>
+        <view class="section-title-group">
+          <text class="section-title">智能点菜</text>
+          <text class="section-subtitle">AI 助手帮你搞定</text>
+        </view>
+      </view>
+
+      <view class="feature-list">
+        <glass-card className="feature-item">
+          <view class="feature-content">
+            <view class="feature-icon">
+              <image src="/assets/icons/scan.svg" mode="aspectFit" />
+            </view>
+            <view class="feature-info">
+              <text class="feature-name">智能识别</text>
+              <text class="feature-desc">AI 自动识别菜单菜品和价格</text>
+            </view>
+          </view>
+        </glass-card>
+
+        <glass-card className="feature-item">
+          <view class="feature-content">
+            <view class="feature-icon">
+              <image src="/assets/icons/wallet.svg" mode="aspectFit" />
+            </view>
+            <view class="feature-info">
+              <text class="feature-name">预算控制</text>
+              <text class="feature-desc">根据预算智能搭配最优组合</text>
+            </view>
+          </view>
+        </glass-card>
+
+        <glass-card className="feature-item">
+          <view class="feature-content">
+            <view class="feature-icon">
+              <image src="/assets/icons/users.svg" mode="aspectFit" />
+            </view>
+            <view class="feature-info">
+              <text class="feature-name">偏好匹配</text>
+              <text class="feature-desc">考虑每位成员的口味和禁忌</text>
+            </view>
+          </view>
+        </glass-card>
+
+        <glass-card className="feature-item">
+          <view class="feature-content">
+            <view class="feature-icon">
+              <image src="/assets/icons/sparkles.svg" mode="aspectFit" />
+            </view>
+            <view class="feature-info">
+              <text class="feature-name">营养均衡</text>
+              <text class="feature-desc">荤素搭配，口味多样</text>
+            </view>
+          </view>
+        </glass-card>
+      </view>
+    </view>
+
+    <!-- 历史记录入口 -->
+    <glass-card className="history-entry" bindtap="goToHistory" wx:if="{{hasHistory}}">
+      <view class="history-content">
+        <view class="history-left">
+          <image src="/assets/icons/clock.svg" class="history-icon" mode="aspectFit" />
+          <text class="history-text">查看历史点餐记录</text>
+        </view>
+        <image src="/assets/icons/arrow-right.svg" class="arrow-icon" mode="aspectFit" />
+      </view>
+    </glass-card>
+
+    <!-- 底部 TabBar 占位 -->
+    <view class="tab-bar-placeholder"></view>
+  </scroll-view>
+</view>
+

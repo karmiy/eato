@@ -1,0 +1,117 @@
+<!--
+  Eato - 首页（吃哪家）
+  高级感 + 高光泽玻璃质感 + 柔和渐变
+-->
+<view class="page">
+  <!-- 固定顶部导航 -->
+  <view class="header-fixed" style="padding-top: {{statusBarHeight}}px;">
+    <view class="header">
+      <view class="header-content">
+        <view class="logo-section">
+          <view class="logo-icon">
+            <image src="/assets/icons/utensils.svg" class="logo-img" mode="aspectFit" />
+          </view>
+          <view class="logo-text">
+            <text class="app-name">吃了么</text>
+            <text class="app-slogan">今天吃点好的</text>
+          </view>
+        </view>
+        <view class="header-actions">
+          <view class="notification-btn">
+            <text class="notification-emoji">🔔</text>
+            <view class="notification-dot" wx:if="{{hasNotification}}"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 顶部占位 -->
+  <view class="header-placeholder" style="height: {{statusBarHeight + 56}}px;"></view>
+
+  <!-- 主内容区 -->
+  <scroll-view class="main-content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 核心摇一摇区域 -->
+    <view class="shake-section">
+      <glass-card className="shake-card">
+        <view class="shake-inner" bindtap="startRecommend">
+          <!-- 3D 球体动画 -->
+          <view class="orb-container {{isShaking ? 'shaking' : ''}}">
+            <view class="orb">
+              <view class="orb-highlight"></view>
+              <view class="orb-reflection"></view>
+              <view class="orb-glow"></view>
+            </view>
+          </view>
+          <view class="shake-text">
+            <text class="shake-title">{{isShaking ? '寻找中...' : '点击开始'}}</text>
+            <text class="shake-hint">或摇一摇手机，帮你决定吃什么</text>
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 快捷设置 -->
+    <view class="settings-section">
+      <!-- 位置设置 -->
+      <glass-card className="setting-item" bindtap="selectLocation">
+        <view class="setting-content">
+          <view class="setting-icon">
+            <image src="/assets/icons/location.svg" mode="aspectFit" />
+          </view>
+          <view class="setting-info">
+            <text class="setting-label">当前位置</text>
+            <text class="setting-value">{{location || '中关村'}} · {{distance}}km内</text>
+          </view>
+          <image class="setting-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+        </view>
+      </glass-card>
+
+      <!-- 预算设置 -->
+      <glass-card className="setting-item" bindtap="selectBudget">
+        <view class="setting-content">
+          <view class="setting-icon">
+            <image src="/assets/icons/wallet.svg" mode="aspectFit" />
+          </view>
+          <view class="setting-info">
+            <text class="setting-label">人均预算</text>
+            <text class="setting-value">{{budgetText}}</text>
+          </view>
+          <image class="setting-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+        </view>
+      </glass-card>
+
+      <!-- 菜系设置 -->
+      <glass-card className="setting-item" bindtap="selectCuisine">
+        <view class="setting-content">
+          <view class="setting-icon">
+            <image src="/assets/icons/utensils.svg" mode="aspectFit" />
+          </view>
+          <view class="setting-info">
+            <text class="setting-label">菜系偏好</text>
+            <text class="setting-value">{{cuisineText}}</text>
+          </view>
+          <image class="setting-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+        </view>
+      </glass-card>
+
+      <!-- 用餐成员 -->
+      <glass-card className="setting-item" bindtap="selectMembers">
+        <view class="setting-content">
+          <view class="setting-icon">
+            <image src="/assets/icons/users.svg" mode="aspectFit" />
+          </view>
+          <view class="setting-info">
+            <text class="setting-label">和谁吃</text>
+            <text class="setting-value">{{membersText}}</text>
+          </view>
+          <image class="setting-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 底部 TabBar 占位 -->
+    <view class="tab-bar-placeholder"></view>
+  </scroll-view>
+</view>
+

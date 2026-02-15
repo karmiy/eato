@@ -1,0 +1,11 @@
+<!--
+  Eato - 玻璃卡片组件
+  高光泽玻璃质感
+-->
+<view class="glass-card {{className}}" style="{{customStyle}}">
+  <view class="glass-highlight"></view>
+  <view class="glass-content">
+    <slot></slot>
+  </view>
+</view>
+

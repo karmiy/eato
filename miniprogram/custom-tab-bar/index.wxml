@@ -1,0 +1,57 @@
+<!--
+  Eato - 自定义 TabBar
+  简洁玻璃质感设计
+-->
+<view class="tab-bar">
+  <!-- 吃哪家 -->
+  <view
+    class="tab-item {{selected === 0 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-path="/pages/home/home"
+    data-index="0"
+  >
+    <view class="tab-icon">
+      <image
+        class="icon"
+        src="{{selected === 0 ? '/assets/icons/dice-active.svg' : '/assets/icons/dice.svg'}}"
+        mode="aspectFit"
+      />
+    </view>
+    <text class="tab-text">吃哪家</text>
+  </view>
+
+  <!-- 点什么菜 -->
+  <view
+    class="tab-item {{selected === 1 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-path="/pages/menu/menu"
+    data-index="1"
+  >
+    <view class="tab-icon">
+      <image
+        class="icon"
+        src="{{selected === 1 ? '/assets/icons/camera-active.svg' : '/assets/icons/camera.svg'}}"
+        mode="aspectFit"
+      />
+    </view>
+    <text class="tab-text">点什么菜</text>
+  </view>
+
+  <!-- 我的 -->
+  <view
+    class="tab-item {{selected === 2 ? 'active' : ''}}"
+    bindtap="switchTab"
+    data-path="/pages/profile/profile"
+    data-index="2"
+  >
+    <view class="tab-icon">
+      <image
+        class="icon"
+        src="{{selected === 2 ? '/assets/icons/user-active.svg' : '/assets/icons/user.svg'}}"
+        mode="aspectFit"
+      />
+    </view>
+    <text class="tab-text">我的</text>
+  </view>
+</view>
+

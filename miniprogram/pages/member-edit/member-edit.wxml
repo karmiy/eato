@@ -1,0 +1,125 @@
+<!--
+  Eato - 成员编辑页面
+  编辑成员信息和口味偏好
+-->
+<view class="page">
+  <nav-bar title="{{isEdit ? '编辑成员' : '添加成员'}}" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 头像和名称 -->
+    <glass-card className="profile-card">
+      <view class="profile-section">
+        <view class="avatar-picker" style="background: {{member.color}}">
+          <text>{{member.name ? member.name[0] : '?'}}</text>
+        </view>
+        <view class="name-input-wrapper">
+          <input 
+            class="name-input" 
+            placeholder="输入成员名称"
+            value="{{member.name}}"
+            bindinput="onNameInput"
+          />
+        </view>
+      </view>
+    </glass-card>
+
+    <!-- 口味偏好 -->
+    <view class="section">
+      <text class="section-title">口味偏好</text>
+      <glass-card className="options-card">
+        <view class="option-group">
+          <text class="option-label">辣度</text>
+          <view class="option-items">
+            <view 
+              class="option-item {{member.spicy === item.value ? 'active' : ''}}"
+              wx:for="{{spicyOptions}}"
+              wx:key="value"
+              bindtap="setSpicy"
+              data-value="{{item.value}}"
+            >
+              <text>{{item.label}}</text>
+            </view>
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 菜系偏好 -->
+    <view class="section">
+      <text class="section-title">喜欢的菜系</text>
+      <glass-card className="options-card">
+        <view class="tags-group">
+          <view 
+            class="tag-item {{member.cuisines.includes(item) ? 'active' : ''}}"
+            wx:for="{{cuisineOptions}}"
+            wx:key="*this"
+            bindtap="toggleCuisine"
+            data-value="{{item}}"
+          >
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 饮食禁忌 -->
+    <view class="section">
+      <text class="section-title">饮食禁忌</text>
+      <glass-card className="options-card">
+        <view class="tags-group">
+          <view 
+            class="tag-item warning {{member.restrictions.includes(item) ? 'active' : ''}}"
+            wx:for="{{restrictionOptions}}"
+            wx:key="*this"
+            bindtap="toggleRestriction"
+            data-value="{{item}}"
+          >
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 人均预算 -->
+    <view class="section">
+      <text class="section-title">人均预算范围</text>
+      <glass-card className="budget-card">
+        <view class="budget-row">
+          <view class="budget-input">
+            <text class="budget-symbol">¥</text>
+            <input 
+              type="number" 
+              placeholder="最低" 
+              value="{{member.budgetMin}}"
+              bindinput="onBudgetMinInput"
+            />
+          </view>
+          <text class="budget-separator">-</text>
+          <view class="budget-input">
+            <text class="budget-symbol">¥</text>
+            <input 
+              type="number" 
+              placeholder="最高" 
+              value="{{member.budgetMax}}"
+              bindinput="onBudgetMaxInput"
+            />
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+
+  <!-- 保存按钮 -->
+  <view class="save-section">
+    <view class="btn-save" bindtap="saveMember">
+      <text>保存</text>
+    </view>
+    <view class="btn-delete" wx:if="{{isEdit}}" bindtap="deleteMember">
+      <text>删除成员</text>
+    </view>
+  </view>
+</view>
+

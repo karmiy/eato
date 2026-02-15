@@ -1,0 +1,76 @@
+<!--
+  Eato - 吃货档案页面
+  成员管理和偏好设置
+-->
+<view class="page">
+  <nav-bar title="{{isSelectMode ? '选择成员' : '吃货档案'}}" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 成员列表 -->
+    <view class="members-list" wx:if="{{members.length > 0}}">
+      <glass-card 
+        className="member-card {{isSelectMode && selectedIds.includes(item.id) ? 'selected' : ''}}"
+        wx:for="{{members}}"
+        wx:key="id"
+        bindtap="{{isSelectMode ? 'toggleSelect' : 'editMember'}}"
+        data-id="{{item.id}}"
+      >
+        <view class="member-content">
+          <!-- 选择指示器 -->
+          <view class="select-indicator" wx:if="{{isSelectMode}}">
+            <view class="indicator-inner {{selectedIds.includes(item.id) ? 'active' : ''}}">
+              <image wx:if="{{selectedIds.includes(item.id)}}" src="/assets/icons/check.svg" mode="aspectFit" />
+            </view>
+          </view>
+          
+          <!-- 头像 -->
+          <view class="member-avatar" style="background: {{item.color || 'linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 100%)'}}">
+            <text>{{item.name[0]}}</text>
+          </view>
+          
+          <!-- 信息 -->
+          <view class="member-info">
+            <text class="member-name">{{item.name}}</text>
+            <view class="member-tags">
+              <text class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+            </view>
+          </view>
+          
+          <!-- 箭头 -->
+          <image wx:if="{{!isSelectMode}}" class="member-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{members.length === 0}}">
+      <view class="empty-icon">
+        <image src="/assets/icons/users.svg" mode="aspectFit" />
+      </view>
+      <text class="empty-title">还没有成员</text>
+      <text class="empty-desc">添加家人或朋友，记录他们的口味偏好</text>
+    </view>
+
+    <!-- 添加按钮 -->
+    <view class="add-section" wx:if="{{!isSelectMode}}">
+      <view class="btn-add" bindtap="addMember">
+        <image src="/assets/icons/plus.svg" mode="aspectFit" />
+        <text>添加成员</text>
+      </view>
+    </view>
+
+    <!-- 底部占位 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+
+  <!-- 选择模式确认栏 -->
+  <view class="select-bar" wx:if="{{isSelectMode}}">
+    <view class="select-info">
+      <text>已选择 {{selectedIds.length}} 人</text>
+    </view>
+    <view class="btn-confirm" bindtap="confirmSelect">
+      <text>确定</text>
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,285 @@
+/**
+ * Eato - 首页样式
+ * 高级感 + 高光泽玻璃质感 + 柔和渐变
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #FFE5EC 0%, #FFF5F7 50%, #F8F4FF 100%);
+}
+
+/* 固定顶部导航 */
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, #FFE5EC 0%, #FFE5EC 100%);
+}
+
+/* 顶部导航 */
+.header {
+  padding: 16rpx 32rpx 20rpx;
+}
+
+/* 顶部占位高度（由 JS 动态设置） */
+.header-placeholder {
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.logo-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 100%);
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 157, 0.3);
+}
+
+.logo-img {
+  width: 44rpx;
+  height: 44rpx;
+  filter: brightness(0) invert(1);
+}
+
+.notification-emoji {
+  font-size: 40rpx;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1A1A2E;
+  letter-spacing: 2rpx;
+}
+
+.app-slogan {
+  font-size: 24rpx;
+  color: #666680;
+  margin-top: 4rpx;
+}
+
+.header-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.notification-btn {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10rpx);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.header-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  width: 16rpx;
+  height: 16rpx;
+  background: #FF6B9D;
+  border-radius: 50%;
+  border: 2rpx solid #fff;
+}
+
+/* 主内容区 - 可滚动 */
+.main-content {
+  flex: 1;
+  padding: 0 32rpx;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* TabBar 占位 */
+.tab-bar-placeholder {
+  height: calc(env(safe-area-inset-bottom) + 130rpx);
+  flex-shrink: 0;
+}
+
+/* 摇一摇区域 */
+.shake-section {
+  margin-top: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.shake-card {
+  padding: 0;
+}
+
+.shake-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 40rpx;
+}
+
+/* 3D 球体 */
+.orb-container {
+  position: relative;
+  width: 280rpx;
+  height: 280rpx;
+  margin-bottom: 40rpx;
+  transition: transform 0.3s ease;
+}
+
+.orb-container.shaking {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.orb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 30%, #FFD4E5 60%, #E0C3FC 100%);
+  box-shadow: 
+    0 20rpx 60rpx rgba(255, 107, 157, 0.4),
+    0 40rpx 100rpx rgba(224, 195, 252, 0.3),
+    inset 0 -20rpx 40rpx rgba(255, 107, 157, 0.3);
+}
+
+.orb-highlight {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 35%;
+  height: 25%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border-radius: 50%;
+  filter: blur(4rpx);
+}
+
+.orb-reflection {
+  position: absolute;
+  bottom: 25%;
+  right: 15%;
+  width: 20%;
+  height: 15%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  filter: blur(6rpx);
+}
+
+.orb-glow {
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+  right: -20rpx;
+  bottom: -20rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
+}
+
+.shake-text {
+  text-align: center;
+}
+
+.shake-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+  margin-bottom: 12rpx;
+}
+
+.shake-hint {
+  display: block;
+  font-size: 26rpx;
+  color: #666680;
+}
+
+/* 设置区域 */
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.setting-item {
+  padding: 0;
+}
+
+.setting-content {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  gap: 24rpx;
+}
+
+.setting-icon {
+  width: 72rpx;
+  height: 72rpx;
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(255, 158, 196, 0.1) 100%);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.setting-icon image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.setting-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.setting-label {
+  font-size: 24rpx;
+  color: #999AAA;
+}
+
+.setting-value {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #1A1A2E;
+}
+
+.setting-arrow {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.5;
+}
+

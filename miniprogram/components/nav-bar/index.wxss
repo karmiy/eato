@@ -1,0 +1,84 @@
+/**
+ * Eato - 导航栏组件样式
+ */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, rgba(255, 245, 247, 0.98) 0%, rgba(255, 245, 247, 0.85) 100%);
+  backdrop-filter: blur(40rpx);
+  -webkit-backdrop-filter: blur(40rpx);
+}
+
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  min-width: 100rpx;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-text {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+}
+
+.nav-btn {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.nav-bar-placeholder {
+  width: 100%;
+}
+
+/* 透明模式 */
+.nav-bar.transparent {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.nav-bar.transparent .nav-btn {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+

@@ -1,0 +1,104 @@
+<!--
+  Eato - 菜单推荐结果页
+  展示 AI 推荐的点餐方案
+-->
+<view class="page">
+  <nav-bar title="推荐方案" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 方案切换标签 -->
+    <view class="scheme-tabs">
+      <view 
+        class="scheme-tab {{currentScheme === index ? 'active' : ''}}"
+        wx:for="{{schemes}}"
+        wx:key="index"
+        bindtap="switchScheme"
+        data-index="{{index}}"
+      >
+        <text class="tab-label">方案{{index + 1}}</text>
+        <text class="tab-price">¥{{item.totalPrice}}</text>
+      </view>
+    </view>
+
+    <!-- 当前方案详情 -->
+    <view class="scheme-detail">
+      <!-- 方案概览 -->
+      <glass-card className="overview-card">
+        <view class="overview-header">
+          <view class="overview-left">
+            <text class="overview-title">推荐方案 {{currentScheme + 1}}</text>
+            <view class="overview-tags">
+              <text class="tag">{{schemes[currentScheme].peopleCount}}人份</text>
+              <text class="tag">{{schemes[currentScheme].dishCount}}道菜</text>
+            </view>
+          </view>
+          <view class="overview-price">
+            <text class="price-label">总价</text>
+            <text class="price-value">¥{{schemes[currentScheme].totalPrice}}</text>
+          </view>
+        </view>
+        <view class="ai-reason">
+          <view class="ai-badge">
+            <text>AI</text>
+          </view>
+          <text class="reason-text">{{schemes[currentScheme].reason}}</text>
+        </view>
+      </glass-card>
+
+      <!-- 菜品列表 -->
+      <view class="dishes-section">
+        <text class="section-title">推荐菜品</text>
+        <view class="dishes-list">
+          <glass-card 
+            className="dish-card" 
+            wx:for="{{schemes[currentScheme].dishes}}" 
+            wx:key="id"
+          >
+            <view class="dish-content">
+              <view class="dish-info">
+                <text class="dish-name">{{item.name}}</text>
+                <view class="dish-tags">
+                  <text class="dish-tag" wx:if="{{item.isSpicy}}">辣</text>
+                  <text class="dish-tag" wx:if="{{item.isRecommended}}">推荐</text>
+                </view>
+                <text class="dish-desc">{{item.description}}</text>
+              </view>
+              <view class="dish-right">
+                <text class="dish-price">¥{{item.price}}</text>
+                <view class="quantity-control">
+                  <view class="qty-btn" bindtap="decreaseQuantity" data-id="{{item.id}}">
+                    <image src="/assets/icons/minus.svg" mode="aspectFit" />
+                  </view>
+                  <text class="qty-value">{{item.quantity}}</text>
+                  <view class="qty-btn active" bindtap="increaseQuantity" data-id="{{item.id}}">
+                    <image src="/assets/icons/plus.svg" mode="aspectFit" />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </glass-card>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏占位 -->
+    <view class="bottom-bar-placeholder"></view>
+  </scroll-view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bar-left">
+      <text class="total-label">合计</text>
+      <text class="total-price">¥{{currentTotal}}</text>
+    </view>
+    <view class="bar-right">
+      <view class="btn-secondary-small" bindtap="regenerate">
+        <text>换一换</text>
+      </view>
+      <view class="btn-primary-small" bindtap="confirmOrder">
+        <text>就这样点</text>
+      </view>
+    </view>
+  </view>
+</view>
+

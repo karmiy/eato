@@ -1,0 +1,294 @@
+/**
+ * Eato - 点什么菜页面样式
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #E8F4FF 0%, #FFF8FA 50%, #F8F4FF 100%);
+}
+
+/* 固定顶部导航 */
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #E8F4FF;
+}
+
+/* 顶部导航 */
+.header {
+  padding: 16rpx 32rpx 24rpx;
+}
+
+/* 顶部占位高度（需要包含顶部安全区域） */
+.header-placeholder {
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1A1A2E;
+  margin-bottom: 4rpx;
+}
+
+.page-subtitle {
+  font-size: 26rpx;
+  color: #666680;
+}
+
+/* 内容区 - 可滚动 */
+.content {
+  flex: 1;
+  padding: 24rpx 32rpx 0;
+  box-sizing: border-box;
+}
+
+/* TabBar 占位 */
+.tab-bar-placeholder {
+  height: calc(env(safe-area-inset-bottom) + 130rpx);
+  flex-shrink: 0;
+}
+
+/* 扫描卡片 */
+.scan-card {
+  margin-bottom: 40rpx;
+}
+
+.scan-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 32rpx;
+}
+
+/* 扫描球体动画 */
+.scan-orb {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 32rpx;
+}
+
+.orb-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120rpx;
+  height: 120rpx;
+  background: linear-gradient(135deg, #6B5BFF 0%, #A89EFF 50%, #C4B5FD 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12rpx 40rpx rgba(107, 91, 255, 0.4);
+  z-index: 2;
+}
+
+.orb-icon {
+  width: 56rpx;
+  height: 56rpx;
+  filter: brightness(0) invert(1);
+}
+
+.orb-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2rpx solid rgba(107, 91, 255, 0.3);
+  animation: pulse 2s ease-out infinite;
+}
+
+.ring-1 {
+  width: 140rpx;
+  height: 140rpx;
+  animation-delay: 0s;
+}
+
+.ring-2 {
+  width: 170rpx;
+  height: 170rpx;
+  animation-delay: 0.5s;
+}
+
+.ring-3 {
+  width: 200rpx;
+  height: 200rpx;
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.scan-text {
+  text-align: center;
+}
+
+.scan-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+  margin-bottom: 8rpx;
+}
+
+.scan-hint {
+  display: block;
+  font-size: 26rpx;
+  color: #666680;
+}
+
+/* 功能说明 */
+.features-section {
+  margin-bottom: 32rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+  padding: 0 8rpx;
+}
+
+.section-badge {
+  width: 56rpx;
+  height: 56rpx;
+  background: linear-gradient(135deg, #6B5BFF 0%, #A89EFF 100%);
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(107, 91, 255, 0.3);
+}
+
+.section-badge image {
+  width: 32rpx;
+  height: 32rpx;
+  filter: brightness(0) invert(1);
+}
+
+.section-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+}
+
+.section-subtitle {
+  display: block;
+  font-size: 24rpx;
+  color: #666680;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.feature-item {
+  padding: 0;
+}
+
+.feature-content {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 28rpx;
+  gap: 24rpx;
+}
+
+.feature-icon {
+  width: 72rpx;
+  height: 72rpx;
+  background: linear-gradient(135deg, rgba(107, 91, 255, 0.15) 0%, rgba(168, 158, 255, 0.1) 100%);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.feature-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.feature-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+}
+
+.feature-desc {
+  font-size: 24rpx;
+  color: #666680;
+}
+
+/* 历史记录入口 */
+.history-entry {
+  margin-bottom: 32rpx;
+}
+
+.history-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx;
+}
+
+.history-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.history-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.history-text {
+  font-size: 28rpx;
+  color: #666680;
+}
+
+.arrow-icon {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.5;
+}

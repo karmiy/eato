@@ -1,0 +1,51 @@
+<!--
+  Eato - 收藏页面
+-->
+<view class="page">
+  <nav-bar title="我的收藏" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 餐厅列表 -->
+    <view class="restaurant-list" wx:if="{{restaurants.length > 0}}">
+      <glass-card 
+        className="restaurant-card"
+        wx:for="{{restaurants}}"
+        wx:key="id"
+        bindtap="viewRestaurant"
+        data-id="{{item.id}}"
+      >
+        <view class="restaurant-content">
+          <image class="restaurant-image" src="{{item.image}}" mode="aspectFill" />
+          <view class="restaurant-info">
+            <text class="restaurant-name">{{item.name}}</text>
+            <view class="restaurant-meta">
+              <view class="rating">
+                <image src="/assets/icons/star.svg" mode="aspectFit" />
+                <text>{{item.rating}}</text>
+              </view>
+              <text class="category">{{item.category}}</text>
+              <text class="price">¥{{item.avgPrice}}/人</text>
+            </view>
+            <text class="restaurant-address">{{item.address}}</text>
+          </view>
+          <view class="favorite-btn active" catchtap="toggleFavorite" data-id="{{item.id}}">
+            <image src="/assets/icons/heart.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{restaurants.length === 0}}">
+      <view class="empty-icon">
+        <image src="/assets/icons/heart.svg" mode="aspectFit" />
+      </view>
+      <text class="empty-title">还没有收藏</text>
+      <text class="empty-desc">发现喜欢的餐厅，点击收藏保存</text>
+    </view>
+
+    <!-- 底部安全区域 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
+

@@ -1,0 +1,45 @@
+<!--
+  Eato - 黑名单页面
+-->
+<view class="page">
+  <nav-bar title="黑名单" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="tip-bar">
+      <image src="/assets/icons/bell.svg" mode="aspectFit" />
+      <text>黑名单中的餐厅将不会出现在推荐结果中</text>
+    </view>
+
+    <!-- 餐厅列表 -->
+    <view class="restaurant-list" wx:if="{{restaurants.length > 0}}">
+      <glass-card 
+        className="restaurant-card"
+        wx:for="{{restaurants}}"
+        wx:key="id"
+      >
+        <view class="restaurant-content">
+          <view class="restaurant-info">
+            <text class="restaurant-name">{{item.name}}</text>
+            <text class="restaurant-reason">{{item.reason}}</text>
+          </view>
+          <view class="remove-btn" bindtap="removeFromBlacklist" data-id="{{item.id}}">
+            <text>移除</text>
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{restaurants.length === 0}}">
+      <view class="empty-icon">
+        <image src="/assets/icons/ban.svg" mode="aspectFit" />
+      </view>
+      <text class="empty-title">黑名单为空</text>
+      <text class="empty-desc">在推荐结果中点击"不再推荐"可添加到黑名单</text>
+    </view>
+
+    <!-- 底部安全区域 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
+

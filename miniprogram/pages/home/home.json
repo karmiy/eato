@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "glass-card": "/components/glass-card/index",
+    "nav-bar": "/components/nav-bar/index"
+  },
+  "navigationStyle": "custom"
+}
+

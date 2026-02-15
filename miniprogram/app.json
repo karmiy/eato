@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/menu/menu",
+    "pages/profile/profile",
+    "pages/result/result",
+    "pages/members/members",
+    "pages/member-edit/member-edit",
+    "pages/menu-scan/menu-scan",
+    "pages/menu-result/menu-result",
+    "pages/favorites/favorites",
+    "pages/blacklist/blacklist",
+    "pages/history/history",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#FFF5F7",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#FF6B9D",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "吃哪家"
+      },
+      {
+        "pagePath": "pages/menu/menu",
+        "text": "点什么菜"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}
+

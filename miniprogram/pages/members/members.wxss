@@ -1,0 +1,222 @@
+/**
+ * Eato - 吃货档案页面样式
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #FFE5EC 0%, #FFF5F7 50%, #F8F4FF 100%);
+}
+
+.content {
+  flex: 1;
+  padding: 24rpx 32rpx 0;
+  box-sizing: border-box;
+}
+
+.bottom-spacer {
+  height: calc(env(safe-area-inset-bottom) + 40rpx);
+}
+
+/* 成员列表 */
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.member-card {
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.member-card.selected {
+  border: 2rpx solid #FF6B9D;
+  box-shadow: 0 8rpx 32rpx rgba(255, 107, 157, 0.2);
+}
+
+.member-content {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 28rpx;
+  gap: 20rpx;
+}
+
+/* 选择指示器 */
+.select-indicator {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.indicator-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2rpx solid #E5E5EA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.indicator-inner.active {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 100%);
+  border-color: transparent;
+}
+
+.indicator-inner image {
+  width: 28rpx;
+  height: 28rpx;
+  filter: brightness(0) invert(1);
+}
+
+/* 头像 */
+.member-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 157, 0.2);
+}
+
+.member-avatar text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* 信息 */
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+  margin-bottom: 8rpx;
+}
+
+.member-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.tag {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  background: rgba(255, 107, 157, 0.1);
+  color: #FF6B9D;
+  border-radius: 8rpx;
+}
+
+.member-arrow {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.4;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  background: rgba(255, 107, 157, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+}
+
+.empty-icon image {
+  width: 80rpx;
+  height: 80rpx;
+  opacity: 0.5;
+}
+
+.empty-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+  margin-bottom: 12rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999AAA;
+  text-align: center;
+}
+
+/* 添加按钮 */
+.add-section {
+  margin-top: 32rpx;
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 32rpx;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10rpx);
+  border: 2rpx dashed rgba(255, 107, 157, 0.4);
+  border-radius: 24rpx;
+}
+
+.btn-add image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.btn-add text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #FF6B9D;
+}
+
+/* 选择确认栏 */
+.select-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 32rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid rgba(0, 0, 0, 0.06);
+}
+
+.select-info text {
+  font-size: 28rpx;
+  color: #666680;
+}
+
+.btn-confirm {
+  padding: 20rpx 48rpx;
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 157, 0.3);
+}
+
+.btn-confirm text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #fff;
+}

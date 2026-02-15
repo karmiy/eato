@@ -1,0 +1,92 @@
+<!--
+  Eato - 推荐结果页
+  餐厅推荐卡片 + 玻璃质感
+-->
+<view class="page">
+  <nav-bar title="为您推荐" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 餐厅卡片 -->
+    <glass-card className="restaurant-card no-padding">
+      <!-- 餐厅图片 -->
+      <view class="restaurant-image">
+        <image 
+          src="{{restaurant.image || '/assets/images/restaurant-placeholder.png'}}" 
+          mode="aspectFill"
+          class="cover-image"
+        />
+        <view class="image-overlay"></view>
+        <!-- 收藏按钮 -->
+        <view class="favorite-btn {{restaurant.isFavorite ? 'active' : ''}}" bindtap="toggleFavorite">
+          <image src="/assets/icons/heart{{restaurant.isFavorite ? '-filled' : ''}}.svg" mode="aspectFit" />
+        </view>
+      </view>
+
+      <!-- 餐厅信息 -->
+      <view class="restaurant-info">
+        <view class="restaurant-header">
+          <text class="restaurant-name">{{restaurant.name}}</text>
+          <view class="rating-badge">
+            <image src="/assets/icons/star.svg" class="star-icon" mode="aspectFit" />
+            <text class="rating-text">{{restaurant.rating}}</text>
+          </view>
+        </view>
+
+        <view class="restaurant-meta">
+          <view class="meta-item">
+            <image src="/assets/icons/location.svg" class="meta-icon" mode="aspectFit" />
+            <text>{{restaurant.distance}}</text>
+          </view>
+          <view class="meta-divider"></view>
+          <view class="meta-item">
+            <text class="price-text">¥{{restaurant.avgPrice}}/人</text>
+          </view>
+          <view class="meta-divider"></view>
+          <view class="meta-item">
+            <text>{{restaurant.cuisine}}</text>
+          </view>
+        </view>
+
+        <view class="restaurant-status">
+          <view class="status-tag {{restaurant.isOpen ? 'open' : 'closed'}}">
+            {{restaurant.isOpen ? '营业中' : '已打烊'}}
+          </view>
+          <text class="business-hours">{{restaurant.businessHours}}</text>
+        </view>
+      </view>
+    </glass-card>
+
+    <!-- AI 推荐理由 -->
+    <glass-card className="reason-card">
+      <view class="reason-header">
+        <view class="ai-badge">
+          <text>AI</text>
+        </view>
+        <text class="reason-title">推荐理由</text>
+      </view>
+      <text class="reason-text">{{restaurant.reason}}</text>
+    </glass-card>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <view class="btn-secondary-custom" bindtap="nextRecommend">
+        <text class="btn-emoji">🔄</text>
+        <text>换一家</text>
+      </view>
+      <view class="btn-primary-custom" bindtap="confirmRestaurant">
+        <text class="btn-emoji">✅</text>
+        <text>就这家</text>
+      </view>
+    </view>
+
+    <!-- 不再推荐 -->
+    <view class="blacklist-action" bindtap="addToBlacklist">
+      <text class="blacklist-emoji">🚫</text>
+      <text>不再推荐这家</text>
+    </view>
+
+    <!-- 底部安全区域 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
+

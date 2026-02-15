@@ -1,0 +1,100 @@
+<!--
+  Eato - 设置页面
+-->
+<view class="page">
+  <nav-bar title="设置" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 推荐设置 -->
+    <view class="section">
+      <text class="section-title">推荐设置</text>
+      <glass-card className="settings-card">
+        <view class="setting-item">
+          <view class="setting-left">
+            <text class="setting-label">默认搜索范围</text>
+            <text class="setting-value">{{searchRadius}}km</text>
+          </view>
+          <slider 
+            class="setting-slider"
+            min="1" 
+            max="10" 
+            value="{{searchRadius}}"
+            activeColor="#FF6B9D"
+            bindchange="onRadiusChange"
+          />
+        </view>
+        
+        <view class="setting-item">
+          <view class="setting-left">
+            <text class="setting-label">摇一摇推荐</text>
+          </view>
+          <switch 
+            checked="{{shakeEnabled}}" 
+            color="#FF6B9D"
+            bindchange="onShakeToggle"
+          />
+        </view>
+        
+        <view class="setting-item">
+          <view class="setting-left">
+            <text class="setting-label">推荐通知</text>
+          </view>
+          <switch 
+            checked="{{notificationEnabled}}" 
+            color="#FF6B9D"
+            bindchange="onNotificationToggle"
+          />
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 数据管理 -->
+    <view class="section">
+      <text class="section-title">数据管理</text>
+      <glass-card className="settings-card">
+        <view class="setting-item clickable" bindtap="clearHistory">
+          <text class="setting-label">清除用餐记录</text>
+          <image src="/assets/icons/arrow-right.svg" mode="aspectFit" class="arrow" />
+        </view>
+        
+        <view class="setting-item clickable" bindtap="clearCache">
+          <text class="setting-label">清除缓存</text>
+          <view class="setting-right">
+            <text class="setting-value">{{cacheSize}}</text>
+            <image src="/assets/icons/arrow-right.svg" mode="aspectFit" class="arrow" />
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 关于 -->
+    <view class="section">
+      <text class="section-title">关于</text>
+      <glass-card className="settings-card">
+        <view class="setting-item">
+          <text class="setting-label">版本</text>
+          <text class="setting-value">v1.0.1</text>
+        </view>
+        
+        <view class="setting-item clickable" bindtap="showPrivacy">
+          <text class="setting-label">隐私政策</text>
+          <image src="/assets/icons/arrow-right.svg" mode="aspectFit" class="arrow" />
+        </view>
+        
+        <view class="setting-item clickable" bindtap="showTerms">
+          <text class="setting-label">用户协议</text>
+          <image src="/assets/icons/arrow-right.svg" mode="aspectFit" class="arrow" />
+        </view>
+        
+        <view class="setting-item clickable" bindtap="contactUs">
+          <text class="setting-label">联系我们</text>
+          <image src="/assets/icons/arrow-right.svg" mode="aspectFit" class="arrow" />
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 底部安全区域 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
+

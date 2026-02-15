@@ -1,0 +1,154 @@
+/**
+ * Eato - 收藏页面样式
+ */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #FFE5EC 0%, #FFF5F7 50%, #F8F4FF 100%);
+}
+
+.content {
+  flex: 1;
+  padding: 24rpx 32rpx 0;
+  box-sizing: border-box;
+}
+
+.bottom-spacer {
+  height: calc(env(safe-area-inset-bottom) + 40rpx);
+}
+
+/* 餐厅列表 */
+.restaurant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.restaurant-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.restaurant-content {
+  display: flex;
+  padding: 20rpx;
+  gap: 20rpx;
+}
+
+.restaurant-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+}
+
+.restaurant-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.restaurant-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+}
+
+.restaurant-meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.rating image {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.rating text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FF9500;
+}
+
+.category,
+.price {
+  font-size: 24rpx;
+  color: #666680;
+}
+
+.restaurant-address {
+  font-size: 24rpx;
+  color: #999AAA;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.favorite-btn {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.favorite-btn image {
+  width: 40rpx;
+  height: 40rpx;
+  opacity: 0.3;
+}
+
+.favorite-btn.active image {
+  opacity: 1;
+  filter: none;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 40rpx;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  background: rgba(255, 107, 157, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+}
+
+.empty-icon image {
+  width: 80rpx;
+  height: 80rpx;
+  opacity: 0.5;
+}
+
+.empty-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+  margin-bottom: 12rpx;
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: #999AAA;
+  text-align: center;
+}
+

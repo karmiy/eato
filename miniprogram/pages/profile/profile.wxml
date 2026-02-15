@@ -1,0 +1,137 @@
+<!--
+  Eato - 我的页面
+  用户中心 + 功能入口
+-->
+<view class="page">
+  <!-- 固定顶部区域 -->
+  <view class="header-fixed" style="height: {{statusBarHeight + 20}}px;"></view>
+
+  <!-- 可滚动内容 -->
+  <scroll-view class="scroll-content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 顶部占位 -->
+    <view class="header-placeholder" style="height: {{statusBarHeight + 20}}px;"></view>
+
+    <!-- 顶部用户卡片 -->
+    <view class="header-section">
+      <glass-card className="user-card">
+      <view class="user-info">
+        <view class="avatar-wrapper" bindtap="editProfile">
+          <image class="avatar" src="{{userInfo.avatar || '/assets/images/default-avatar.png'}}" mode="aspectFill" />
+          <view class="avatar-edit">
+            <image src="/assets/icons/edit.svg" mode="aspectFit" />
+          </view>
+        </view>
+        <view class="user-detail">
+          <text class="user-name">{{userInfo.nickname || '点击登录'}}</text>
+          <text class="user-slogan">今天也要好好吃饭~</text>
+        </view>
+      </view>
+      
+      <!-- 统计数据 -->
+      <view class="user-stats">
+        <view class="stat-item">
+          <text class="stat-value">{{stats.members}}</text>
+          <text class="stat-label">吃货档案</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.favorites}}</text>
+          <text class="stat-label">收藏餐厅</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.records}}</text>
+          <text class="stat-label">用餐记录</text>
+        </view>
+      </view>
+    </glass-card>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="menu-section">
+    <!-- 吃货档案 -->
+    <glass-card className="menu-card" bindtap="goToMembers">
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon pink">
+            <image src="/assets/icons/users.svg" mode="aspectFit" />
+          </view>
+          <view class="menu-info">
+            <text class="menu-title">吃货档案</text>
+            <text class="menu-desc">管理用餐成员和口味偏好</text>
+          </view>
+        </view>
+        <image class="menu-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+      </view>
+    </glass-card>
+
+    <!-- 用餐记录 -->
+    <glass-card className="menu-card" bindtap="goToHistory">
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon purple">
+            <image src="/assets/icons/clock.svg" mode="aspectFit" />
+          </view>
+          <view class="menu-info">
+            <text class="menu-title">用餐记录</text>
+            <text class="menu-desc">查看历史用餐和评价</text>
+          </view>
+        </view>
+        <image class="menu-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+      </view>
+    </glass-card>
+
+    <!-- 我的收藏 -->
+    <glass-card className="menu-card" bindtap="goToFavorites">
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon red">
+            <image src="/assets/icons/heart.svg" mode="aspectFit" />
+          </view>
+          <view class="menu-info">
+            <text class="menu-title">我的收藏</text>
+            <text class="menu-desc">收藏的餐厅和菜品</text>
+          </view>
+        </view>
+        <image class="menu-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+      </view>
+    </glass-card>
+
+    <!-- 黑名单 -->
+    <glass-card className="menu-card" bindtap="goToBlacklist">
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon gray">
+            <image src="/assets/icons/ban.svg" mode="aspectFit" />
+          </view>
+          <view class="menu-info">
+            <text class="menu-title">黑名单</text>
+            <text class="menu-desc">不再推荐的餐厅</text>
+          </view>
+        </view>
+        <image class="menu-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+      </view>
+    </glass-card>
+
+    <!-- 设置 -->
+    <glass-card className="menu-card" bindtap="goToSettings">
+      <view class="menu-item">
+        <view class="menu-left">
+          <view class="menu-icon gray">
+            <image src="/assets/icons/settings.svg" mode="aspectFit" />
+          </view>
+          <view class="menu-info">
+            <text class="menu-title">设置</text>
+            <text class="menu-desc">应用设置和关于我们</text>
+          </view>
+        </view>
+        <image class="menu-arrow" src="/assets/icons/arrow-right.svg" mode="aspectFit" />
+      </view>
+    </glass-card>
+  </view>
+
+  <!-- 底部 TabBar 占位 -->
+  <view class="tab-bar-placeholder"></view>
+  </scroll-view>
+</view>
+

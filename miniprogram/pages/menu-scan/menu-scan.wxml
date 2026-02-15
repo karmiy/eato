@@ -1,0 +1,105 @@
+<!--
+  Eato - 菜单扫描页面
+  设置用餐人数、预算、成员，获取 AI 推荐
+-->
+<view class="page">
+  <nav-bar title="点餐设置" showBack="{{true}}" />
+
+  <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 已上传的菜单图片 -->
+    <view class="images-section">
+      <text class="section-label">菜单图片</text>
+      <scroll-view class="images-scroll" scroll-x>
+        <view class="images-list">
+          <view class="image-item" wx:for="{{images}}" wx:key="index">
+            <image src="{{item}}" mode="aspectFill" class="menu-image" />
+            <view class="image-remove" bindtap="removeImage" data-index="{{index}}">
+              <text>×</text>
+            </view>
+          </view>
+          <view class="image-add" bindtap="addMoreImages" wx:if="{{images.length < 5}}">
+            <image src="/assets/icons/plus.svg" mode="aspectFit" />
+            <text>添加</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 用餐设置 -->
+    <view class="settings-section">
+      <!-- 用餐人数 -->
+      <glass-card className="setting-card">
+        <view class="setting-row">
+          <view class="setting-left">
+            <image src="/assets/icons/users.svg" class="setting-icon" mode="aspectFit" />
+            <text class="setting-label">用餐人数</text>
+          </view>
+          <view class="number-picker">
+            <view class="picker-btn" bindtap="decreasePeople">
+              <image src="/assets/icons/minus.svg" mode="aspectFit" />
+            </view>
+            <text class="picker-value">{{peopleCount}}</text>
+            <view class="picker-btn active" bindtap="increasePeople">
+              <image src="/assets/icons/plus.svg" mode="aspectFit" />
+            </view>
+          </view>
+        </view>
+      </glass-card>
+
+      <!-- 总预算 -->
+      <glass-card className="setting-card">
+        <view class="setting-row">
+          <view class="setting-left">
+            <image src="/assets/icons/wallet.svg" class="setting-icon" mode="aspectFit" />
+            <text class="setting-label">总预算</text>
+          </view>
+          <view class="budget-input">
+            <text class="budget-symbol">¥</text>
+            <input 
+              type="number" 
+              class="budget-field"
+              value="{{budget}}"
+              placeholder="不限"
+              bindinput="onBudgetChange"
+            />
+          </view>
+        </view>
+      </glass-card>
+
+      <!-- 用餐成员 -->
+      <glass-card className="setting-card members-card" bindtap="selectMembers">
+        <view class="setting-row">
+          <view class="setting-left">
+            <image src="/assets/icons/heart.svg" class="setting-icon" mode="aspectFit" />
+            <text class="setting-label">用餐成员</text>
+          </view>
+          <view class="members-preview">
+            <text class="members-text" wx:if="{{selectedMembers.length === 0}}">选择成员偏好</text>
+            <view class="member-avatars" wx:else>
+              <view class="member-avatar" wx:for="{{selectedMembers}}" wx:key="id" wx:if="{{index < 3}}">
+                <text>{{item.name[0]}}</text>
+              </view>
+              <text class="more-members" wx:if="{{selectedMembers.length > 3}}">+{{selectedMembers.length - 3}}</text>
+            </view>
+            <image src="/assets/icons/arrow-right.svg" class="arrow-icon" mode="aspectFit" />
+          </view>
+        </view>
+      </glass-card>
+    </view>
+
+    <!-- 开始推荐按钮 -->
+    <view class="action-section">
+      <view class="btn-gradient-large" bindtap="startRecommend">
+        <view class="btn-content">
+          <image src="/assets/icons/sparkles.svg" class="btn-icon" mode="aspectFit" />
+          <text>AI 智能推荐</text>
+        </view>
+      </view>
+      <text class="action-hint">AI 将根据菜单、预算和成员偏好为您推荐最佳点餐方案</text>
+    </view>
+
+    <!-- 底部安全区域 -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
+
