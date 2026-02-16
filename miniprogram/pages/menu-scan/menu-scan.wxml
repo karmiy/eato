@@ -91,7 +91,7 @@
     <view class="action-section">
       <view class="btn-gradient-large" bindtap="startRecommend">
         <view class="btn-content">
-          <image src="/assets/icons/sparkles.svg" class="btn-icon" mode="aspectFit" />
+          <text class="btn-emoji">✨</text>
           <text>AI 智能推荐</text>
         </view>
       </view>

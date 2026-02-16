@@ -16,7 +16,7 @@
 }
 
 .bottom-bar-placeholder {
-  height: calc(env(safe-area-inset-bottom) + 140rpx);
+  height: calc(env(safe-area-inset-bottom) + 160rpx);
 }
 
 /* 方案标签 */

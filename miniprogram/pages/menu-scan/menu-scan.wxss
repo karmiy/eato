@@ -257,7 +257,7 @@
 .btn-gradient-large {
   width: 100%;
   background: linear-gradient(135deg, #6B5BFF 0%, #A89EFF 100%);
-  border-radius: 28rpx;
+  border-radius: 48rpx;
   padding: 36rpx;
   box-shadow: 0 12rpx 40rpx rgba(107, 91, 255, 0.4);
   transition: all 0.3s ease;
@@ -274,10 +274,8 @@
   gap: 16rpx;
 }
 
-.btn-content image {
-  width: 44rpx;
-  height: 44rpx;
-  filter: brightness(0) invert(1);
+.btn-content .btn-emoji {
+  font-size: 40rpx;
 }
 
 .btn-content text {
