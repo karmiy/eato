@@ -46,11 +46,11 @@
 
     <!-- 菜系偏好 -->
     <view class="section">
-      <text class="section-title">喜欢的菜系</text>
+      <text class="section-title">喜欢的菜系 <text class="section-hint">（可多选）</text></text>
       <glass-card className="options-card">
         <view class="tags-group">
-          <view 
-            class="tag-item {{member.cuisines.includes(item) ? 'active' : ''}}"
+          <view
+            class="tag-item {{selectedCuisines[item] ? 'active' : ''}}"
             wx:for="{{cuisineOptions}}"
             wx:key="*this"
             bindtap="toggleCuisine"
@@ -64,11 +64,11 @@
 
     <!-- 饮食禁忌 -->
     <view class="section">
-      <text class="section-title">饮食禁忌</text>
+      <text class="section-title">饮食禁忌 <text class="section-hint">（可多选）</text></text>
       <glass-card className="options-card">
         <view class="tags-group">
-          <view 
-            class="tag-item warning {{member.restrictions.includes(item) ? 'active' : ''}}"
+          <view
+            class="tag-item warning {{selectedRestrictions[item] ? 'active' : ''}}"
             wx:for="{{restrictionOptions}}"
             wx:key="*this"
             bindtap="toggleRestriction"
@@ -87,9 +87,9 @@
         <view class="budget-row">
           <view class="budget-input">
             <text class="budget-symbol">¥</text>
-            <input 
-              type="number" 
-              placeholder="最低" 
+            <input
+              type="number"
+              placeholder="最低"
               value="{{member.budgetMin}}"
               bindinput="onBudgetMinInput"
             />
@@ -97,14 +97,30 @@
           <text class="budget-separator">-</text>
           <view class="budget-input">
             <text class="budget-symbol">¥</text>
-            <input 
-              type="number" 
-              placeholder="最高" 
+            <input
+              type="number"
+              placeholder="最高"
               value="{{member.budgetMax}}"
               bindinput="onBudgetMaxInput"
             />
           </view>
         </view>
+      </glass-card>
+    </view>
+
+    <!-- 其他备注 -->
+    <view class="section">
+      <text class="section-title">其他备注</text>
+      <glass-card className="notes-card">
+        <textarea
+          class="notes-input"
+          placeholder="补充其他饮食偏好或禁忌，例如：喜欢清淡口味、最近减肥中..."
+          value="{{member.notes}}"
+          bindinput="onNotesInput"
+          maxlength="200"
+          auto-height
+        />
+        <view class="notes-count">{{member.notes.length || 0}}/200</view>
       </glass-card>
     </view>
 

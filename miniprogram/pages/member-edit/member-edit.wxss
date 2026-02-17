@@ -77,6 +77,12 @@
   padding-left: 8rpx;
 }
 
+.section-hint {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #999AAA;
+}
+
 .options-card,
 .budget-card {
   padding: 24rpx 28rpx;
@@ -192,6 +198,27 @@
 .budget-separator {
   font-size: 30rpx;
   color: #999AAA;
+}
+
+/* 备注区域 */
+.notes-card {
+  padding: 24rpx 28rpx;
+}
+
+.notes-input {
+  width: 100%;
+  min-height: 120rpx;
+  font-size: 28rpx;
+  color: #1A1A2E;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.notes-count {
+  text-align: right;
+  font-size: 24rpx;
+  color: #999AAA;
+  margin-top: 12rpx;
 }
 
 /* 保存区域 */

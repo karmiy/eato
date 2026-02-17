@@ -1,36 +1,32 @@
 /**
  * Eato - 吃货档案页面
  */
+const memberStore = require('../../stores/memberStore');
+const userStore = require('../../stores/userStore');
+
 Page({
   data: {
     isSelectMode: false,
     selectedIds: [],
-    members: [
-      {
-        id: '1',
-        name: '我',
-        color: 'linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 100%)',
-        tags: ['微辣', '川菜', '不吃香菜']
-      },
-      {
-        id: '2',
-        name: '老婆',
-        color: 'linear-gradient(135deg, #6B5BFF 0%, #A89EFF 100%)',
-        tags: ['不辣', '粤菜', '海鲜过敏']
-      },
-      {
-        id: '3',
-        name: '宝宝',
-        color: 'linear-gradient(135deg, #34C759 0%, #7ED321 100%)',
-        tags: ['不辣', '清淡', '无坚果']
-      }
-    ]
+    members: [],
+    loading: false
   },
 
+  // Store 取消订阅函数
+  _unsubscribe: null,
+
   onLoad(options) {
+    // 订阅 store 变化
+    this._unsubscribe = memberStore.subscribe((state) => {
+      this.setData({
+        members: state.members,
+        loading: state.loading
+      });
+    });
+
     if (options.mode === 'select') {
       this.setData({ isSelectMode: true });
-      
+
       // 恢复已选状态
       if (options.selected) {
         try {
@@ -38,6 +34,33 @@ Page({
           this.setData({ selectedIds });
         } catch (e) {}
       }
+    }
+
+    // 加载数据
+    this._loadMembers();
+  },
+
+  onShow() {
+    // 每次显示页面时刷新数据（编辑后返回）
+    if (this._hasLoaded) {
+      this._loadMembers();
+    }
+  },
+
+  onUnload() {
+    // 取消订阅
+    if (this._unsubscribe) {
+      this._unsubscribe();
+    }
+  },
+
+  async _loadMembers() {
+    try {
+      const userId = userStore.getUserId();
+      await memberStore.loadMembers(userId);
+      this._hasLoaded = true;
+    } catch (err) {
+      wx.showToast({ title: err.message || '加载失败', icon: 'none' });
     }
   },
 

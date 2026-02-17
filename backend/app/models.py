@@ -21,6 +21,7 @@ class MemberCreate(BaseModel):
     dietary_restrictions: List[str] = []    # 饮食禁忌
     budget_min: Optional[int] = None
     budget_max: Optional[int] = None
+    notes: Optional[str] = None             # 其他备注
 
     class Config:
         extra = "allow"
@@ -33,6 +34,7 @@ class MemberUpdate(BaseModel):
     dietary_restrictions: Optional[List[str]] = None
     budget_min: Optional[int] = None
     budget_max: Optional[int] = None
+    notes: Optional[str] = None             # 其他备注
 
     class Config:
         extra = "allow"
