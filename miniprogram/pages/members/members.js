@@ -80,23 +80,25 @@ Page({
 
   // 确认选择
   confirmSelect() {
-    const selectedMembers = this.data.members.filter(m => 
+    const selectedMembers = this.data.members.filter(m =>
       this.data.selectedIds.includes(m.id)
     );
-    
+    const selectedMemberIds = this.data.selectedIds;
+
     // 返回上一页并传递选中的成员
     const pages = getCurrentPages();
     const prevPage = pages[pages.length - 2];
-    
+
     if (prevPage) {
       prevPage.setData({
         selectedMembers,
-        membersText: selectedMembers.length > 0 
+        selectedMemberIds,
+        membersText: selectedMembers.length > 0
           ? selectedMembers.map(m => m.name).join('、')
-          : '自己'
+          : '点击选择'
       });
     }
-    
+
     wx.navigateBack();
   },
 

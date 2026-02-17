@@ -1,36 +1,128 @@
 /**
  * Eato - 推荐结果页
  */
+const app = getApp();
+const recommendService = require('../../services/recommendService');
+const userStore = require('../../stores/userStore');
+
 Page({
   data: {
-    restaurant: {
-      id: '1',
-      name: '川味小馆',
-      image: '',
-      rating: 4.7,
-      avgPrice: 68,
-      distance: '500m',
-      cuisine: '川菜',
-      isOpen: true,
-      businessHours: '10:00-22:00',
-      isFavorite: false,
-      reason: '这是一家评分很高的川菜馆，招牌菜水煮鱼和宫保鸡丁广受好评。距离您很近，人均消费适中，非常适合今天的用餐选择。'
-    }
+    loading: true,
+    restaurant: null,
+    remaining: 0,
+    error: null
   },
 
+  // 推荐参数
+  recommendParams: null,
+
   onLoad(options) {
-    // TODO: 根据筛选条件调用 API 获取推荐
+    // 从全局获取推荐参数
+    this.recommendParams = app.globalData.recommendParams;
     this.fetchRecommendation();
   },
 
   // 获取推荐
   async fetchRecommendation() {
-    wx.showLoading({ title: '正在推荐...' });
-    
-    // TODO: 调用后端 API
-    setTimeout(() => {
-      wx.hideLoading();
-    }, 500);
+    if (!this.recommendParams) {
+      this.setData({
+        loading: false,
+        error: '缺少推荐参数，请返回首页重试'
+      });
+      return;
+    }
+
+    this.setData({ loading: true, error: null });
+
+    try {
+      const result = await recommendService.getRecommendation(this.recommendParams);
+
+      if (result.restaurant) {
+        const r = result.restaurant;
+        this.setData({
+          loading: false,
+          restaurant: {
+            id: r.id,
+            name: r.name,
+            image: r.photos && r.photos[0] || '',
+            images: r.photos || [],
+            rating: r.rating || 0,
+            avgPrice: r.cost || 0,
+            distance: this.formatDistance(r.distance),
+            cuisine: r.keytag || r.type || '餐厅',  // 优先用 keytag
+            tags: r.tags || [],  // 特色菜品标签
+            address: r.address || '',
+            cityname: r.cityname || '',
+            businessArea: r.business_area || '',  // 商圈
+            tel: r.tel || '',
+            location: r.location,
+            opentime: r.opentime || '',
+            isOpen: this.checkIsOpen(r.opentime),
+            isFavorite: false,
+            reason: r.reason || '为您精选推荐',
+            score: r.score || 0
+          },
+          remaining: result.remaining || 0
+        });
+      } else {
+        this.setData({
+          loading: false,
+          error: '暂无推荐，请调整筛选条件'
+        });
+      }
+    } catch (err) {
+      console.error('获取推荐失败', err);
+      this.setData({
+        loading: false,
+        error: err.message || '获取推荐失败'
+      });
+    }
+  },
+
+  // 格式化距离
+  formatDistance(meters) {
+    if (!meters) return '';
+    if (meters < 1000) {
+      return `${meters}m`;
+    }
+    return `${(meters / 1000).toFixed(1)}km`;
+  },
+
+  // 检查是否营业中（简单判断）
+  checkIsOpen(opentime) {
+    if (!opentime) return true; // 无营业时间默认营业
+    // 简单实现：暂时返回 true，后续可根据 opentime 精确判断
+    return true;
+  },
+
+  // 拨打电话
+  callRestaurant() {
+    const tel = this.data.restaurant.tel;
+    if (!tel) {
+      wx.showToast({ title: '暂无电话信息', icon: 'none' });
+      return;
+    }
+    wx.makePhoneCall({
+      phoneNumber: tel.split(';')[0], // 取第一个电话
+      fail: () => {}
+    });
+  },
+
+  // 导航到餐厅
+  navigateToRestaurant() {
+    const { name, location, address } = this.data.restaurant;
+    if (!location) {
+      wx.showToast({ title: '暂无位置信息', icon: 'none' });
+      return;
+    }
+    const [lng, lat] = location.split(',');
+    wx.openLocation({
+      latitude: parseFloat(lat),
+      longitude: parseFloat(lng),
+      name: name,
+      address: address,
+      scale: 18
+    });
   },
 
   // 切换收藏
@@ -49,24 +141,16 @@ Page({
   },
 
   // 换一家
-  nextRecommend() {
+  async nextRecommend() {
+    if (this.data.remaining <= 0) {
+      wx.showToast({ title: '没有更多推荐了', icon: 'none' });
+      return;
+    }
+
     wx.vibrateShort({ type: 'light' });
-    
-    // TODO: 调用 API 获取下一个推荐
-    wx.showLoading({ title: '换一家...' });
-    
-    setTimeout(() => {
-      wx.hideLoading();
-      // 模拟更新数据
-      this.setData({
-        'restaurant.name': '粤式茶餐厅',
-        'restaurant.cuisine': '粤菜',
-        'restaurant.rating': 4.5,
-        'restaurant.avgPrice': 55,
-        'restaurant.distance': '800m',
-        'restaurant.reason': '正宗粤式茶餐厅，早茶点心品种丰富，虾饺和叉烧包是必点。环境舒适，服务周到。'
-      });
-    }, 800);
+
+    // 再次调用同样的接口，会从缓存取下一个
+    await this.fetchRecommendation();
   },
 
   // 确认选择
@@ -111,6 +195,11 @@ Page({
         }
       }
     });
+  },
+
+  // 返回首页
+  goBack() {
+    wx.switchTab({ url: '/pages/home/home' });
   }
 });
 

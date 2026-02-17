@@ -127,6 +127,25 @@
   font-weight: 500;
 }
 
+/* 菜系分组 */
+.cuisine-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.cuisine-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.group-label {
+  font-size: 24rpx;
+  color: #999;
+  font-weight: 500;
+}
+
 /* 标签组 */
 .tags-group {
   display: flex;

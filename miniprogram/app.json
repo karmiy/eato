@@ -13,6 +13,12 @@
     "pages/history/history",
     "pages/settings/settings"
   ],
+  "requiredPrivateInfos": ["getLocation"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于推荐您附近的餐厅"
+    }
+  },
   "window": {
     "navigationStyle": "custom",
     "backgroundColor": "#FFF5F7",

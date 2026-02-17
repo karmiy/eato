@@ -2,14 +2,15 @@
   Eato - 吃货档案页面
   成员管理和偏好设置
 -->
+<wxs src="../../utils/array.wxs" module="arrayUtil" />
 <view class="page">
   <nav-bar title="{{isSelectMode ? '选择成员' : '吃货档案'}}" showBack="{{true}}" />
 
   <scroll-view class="content" scroll-y enhanced show-scrollbar="{{false}}">
     <!-- 成员列表 -->
     <view class="members-list" wx:if="{{members.length > 0}}">
-      <glass-card 
-        className="member-card {{isSelectMode && selectedIds.includes(item.id) ? 'selected' : ''}}"
+      <glass-card
+        className="member-card {{isSelectMode && arrayUtil.includes(selectedIds, item.id) ? 'selected' : ''}}"
         wx:for="{{members}}"
         wx:key="id"
         bindtap="{{isSelectMode ? 'toggleSelect' : 'editMember'}}"
@@ -18,8 +19,8 @@
         <view class="member-content">
           <!-- 选择指示器 -->
           <view class="select-indicator" wx:if="{{isSelectMode}}">
-            <view class="indicator-inner {{selectedIds.includes(item.id) ? 'active' : ''}}">
-              <image wx:if="{{selectedIds.includes(item.id)}}" src="/assets/icons/check.svg" mode="aspectFit" />
+            <view class="indicator-inner {{arrayUtil.includes(selectedIds, item.id) ? 'active' : ''}}">
+              <image wx:if="{{arrayUtil.includes(selectedIds, item.id)}}" src="/assets/icons/check.svg" mode="aspectFit" />
             </view>
           </view>
           

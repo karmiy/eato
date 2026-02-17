@@ -170,7 +170,7 @@
   height: 100%;
   border-radius: 50%;
   background: linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 30%, #FFD4E5 60%, #E0C3FC 100%);
-  box-shadow: 
+  box-shadow:
     0 20rpx 60rpx rgba(255, 107, 157, 0.4),
     0 40rpx 100rpx rgba(224, 195, 252, 0.3),
     inset 0 -20rpx 40rpx rgba(255, 107, 157, 0.3);
@@ -281,5 +281,162 @@
   width: 32rpx;
   height: 32rpx;
   opacity: 0.5;
+}
+
+/* 弹窗遮罩 */
+.popup-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 弹窗容器 */
+.popup-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+  z-index: 201;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #F0F0F5;
+}
+
+.popup-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1A1A2E;
+}
+
+.popup-clear {
+  font-size: 28rpx;
+  color: #FF6B9D;
+}
+
+.popup-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24rpx 32rpx;
+}
+
+/* 菜系分组 */
+.cuisine-group {
+  margin-bottom: 24rpx;
+}
+
+.cuisine-group:last-child {
+  margin-bottom: 0;
+}
+
+.group-title {
+  font-size: 26rpx;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+  padding-left: 4rpx;
+}
+
+/* 菜系网格 */
+.cuisine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16rpx;
+}
+
+.cuisine-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 16rpx;
+  background: #F8F8FA;
+  border-radius: 20rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.2s ease;
+}
+
+.cuisine-item.selected {
+  background: rgba(255, 107, 157, 0.1);
+  border-color: #FF6B9D;
+}
+
+.cuisine-emoji {
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.cuisine-label {
+  font-size: 24rpx;
+  color: #666680;
+}
+
+.cuisine-item.selected .cuisine-label {
+  color: #FF6B9D;
+  font-weight: 500;
+}
+
+/* 弹窗底部按钮 */
+.popup-footer {
+  display: flex;
+  gap: 24rpx;
+  padding: 24rpx 32rpx;
+  /* 使用全局变量：TabBar 高度 + 额外间距 + 安全区域 */
+  padding-bottom: calc(var(--tabbar-height) + 24rpx + var(--safe-bottom));
+  border-top: 1rpx solid #F0F0F5;
+}
+
+.popup-btn {
+  flex: 1;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.popup-btn.cancel {
+  background: #F0F0F5;
+  color: #666680;
+}
+
+.popup-btn.confirm {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF9EC4 100%);
+  color: #fff;
 }
 

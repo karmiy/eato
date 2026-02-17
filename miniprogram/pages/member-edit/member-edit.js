@@ -3,6 +3,7 @@
  */
 const memberStore = require('../../stores/memberStore');
 const userStore = require('../../stores/userStore');
+const { CUISINE_OPTIONS, RESTRICTION_OPTIONS } = require('../../constants/options');
 
 // 辣度映射
 const SPICY_MAP = {
@@ -44,27 +45,21 @@ Page({
       { label: '中辣', value: 'medium' },
       { label: '重辣', value: 'hot' }
     ],
-    // 扩充的菜系选项
-    cuisineOptions: [
-      '川菜', '粤菜', '湘菜', '江浙菜', '东北菜', '鲁菜', '闽菜', '徽菜',
-      '云南菜', '贵州菜', '新疆菜', '西北菜', '客家菜', '潮汕菜', '台湾菜',
-      '火锅', '烧烤', '小龙虾', '海鲜', '自助餐',
-      '西餐', '日料', '韩餐', '泰餐', '越南菜', '东南亚菜', '印度菜',
-      '快餐', '轻食', '素食', '甜品', '面食', '粥粉面'
-    ],
-    // 扩充的饮食禁忌选项
-    restrictionOptions: [
-      // 过敏类
-      '海鲜过敏', '虾蟹过敏', '贝类过敏', '鱼类过敏',
-      '坚果过敏', '花生过敏', '鸡蛋过敏', '牛奶过敏', '大豆过敏',
-      '小麦过敏', '芒果过敏', '菠萝过敏',
-      // 不吃类
-      '不吃香菜', '不吃葱', '不吃蒜', '不吃姜', '不吃辣椒',
-      '不吃内脏', '不吃肥肉', '不吃羊肉', '不吃牛肉', '不吃猪肉',
-      // 特殊饮食
-      '素食', '纯素', '清真', '乳糖不耐', '麸质不耐',
-      '低糖饮食', '低盐饮食', '低脂饮食', '生酮饮食'
-    ]
+    // 菜系分组（从共享常量生成）
+    cuisineGroups: (() => {
+      const groupMap = {};
+      const groupOrder = ['中餐', '火锅烧烤', '小吃快餐', '异国料理', '其他'];
+      CUISINE_OPTIONS.forEach(item => {
+        const group = item.group || '其他';
+        if (!groupMap[group]) {
+          groupMap[group] = { name: group, items: [] };
+        }
+        groupMap[group].items.push(item);
+      });
+      return groupOrder.map(name => groupMap[name]).filter(Boolean);
+    })(),
+    // 饮食禁忌选项（从共享常量获取，提取 value）
+    restrictionOptions: RESTRICTION_OPTIONS.map(item => item.value)
   },
 
   onLoad(options) {

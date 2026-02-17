@@ -2,6 +2,7 @@
   Eato - 首页（吃哪家）
   高级感 + 高光泽玻璃质感 + 柔和渐变
 -->
+<wxs src="../../utils/array.wxs" module="arrayUtil" />
 <view class="page">
   <!-- 固定顶部导航 -->
   <view class="header-fixed" style="padding-top: {{statusBarHeight}}px;">
@@ -113,5 +114,35 @@
     <!-- 底部 TabBar 占位 -->
     <view class="tab-bar-placeholder"></view>
   </scroll-view>
+
+  <!-- 菜系多选弹窗 -->
+  <view class="popup-mask {{showCuisinePopup ? 'show' : ''}}" wx:if="{{showCuisinePopup}}" bindtap="cancelCuisine"></view>
+  <view class="popup-container {{showCuisinePopup ? 'show' : ''}}" wx:if="{{showCuisinePopup}}">
+    <view class="popup-header">
+      <text class="popup-title">选择菜系偏好</text>
+      <text class="popup-clear" bindtap="clearCuisine">清空</text>
+    </view>
+    <view class="popup-content">
+      <view class="cuisine-group" wx:for="{{cuisineGroups}}" wx:key="name" wx:for-item="group">
+        <view class="group-title">{{group.name}}</view>
+        <view class="cuisine-grid">
+          <view
+            class="cuisine-item {{arrayUtil.includes(tempSelectedCuisines, item.value) ? 'selected' : ''}}"
+            wx:for="{{group.items}}"
+            wx:key="value"
+            data-value="{{item.value}}"
+            bindtap="toggleCuisine"
+          >
+            <text class="cuisine-emoji">{{item.emoji}}</text>
+            <text class="cuisine-label">{{item.label}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="popup-footer">
+      <view class="popup-btn cancel" bindtap="cancelCuisine">取消</view>
+      <view class="popup-btn confirm" bindtap="confirmCuisine">确定 ({{tempSelectedCuisines.length}})</view>
+    </view>
+  </view>
 </view>
 

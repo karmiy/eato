@@ -43,7 +43,11 @@ page {
   --space-lg: 32rpx;
   --space-xl: 48rpx;
   --space-2xl: 64rpx;
-  
+
+  /* 布局尺寸 */
+  --tabbar-height: 120rpx;  /* 自定义 TabBar 高度 */
+  --safe-bottom: env(safe-area-inset-bottom);
+
   /* 圆角 */
   --radius-sm: 12rpx;
   --radius-md: 20rpx;

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import members, favorites, blacklist, feedback
+from app.routers import members, favorites, blacklist, feedback, restaurants, recommend
 
 app = FastAPI(
     title="Eato API",
@@ -22,6 +22,8 @@ app.include_router(members.router, prefix="/api")
 app.include_router(favorites.router, prefix="/api")
 app.include_router(blacklist.router, prefix="/api")
 app.include_router(feedback.router, prefix="/api")
+app.include_router(restaurants.router)  # 已有 /api 前缀
+app.include_router(recommend.router)    # 已有 /api 前缀
 
 @app.get("/")
 async def root():

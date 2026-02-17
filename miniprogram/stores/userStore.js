@@ -4,12 +4,20 @@
 
 // 生成临时用户ID（实际项目应该用微信登录的 openid）
 const _generateUserId = () => {
-  let userId = wx.getStorageSync('userId');
-  if (!userId) {
-    userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    wx.setStorageSync('userId', userId);
-  }
-  return userId;
+  // 开发阶段固定 userId，方便测试
+  const DEV_USER_ID = 'dev_user_001';
+
+  // 强制使用开发 ID（清除旧缓存）
+  wx.setStorageSync('userId', DEV_USER_ID);
+  return DEV_USER_ID;
+
+  // 生产模式代码（注释掉）
+  // let userId = wx.getStorageSync('userId');
+  // if (!userId) {
+  //   userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  //   wx.setStorageSync('userId', userId);
+  // }
+  // return userId;
 };
 
 // 状态

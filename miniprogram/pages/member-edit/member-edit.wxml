@@ -48,15 +48,20 @@
     <view class="section">
       <text class="section-title">喜欢的菜系 <text class="section-hint">（可多选）</text></text>
       <glass-card className="options-card">
-        <view class="tags-group">
-          <view
-            class="tag-item {{selectedCuisines[item] ? 'active' : ''}}"
-            wx:for="{{cuisineOptions}}"
-            wx:key="*this"
-            bindtap="toggleCuisine"
-            data-value="{{item}}"
-          >
-            <text>{{item}}</text>
+        <view class="cuisine-groups">
+          <view class="cuisine-group" wx:for="{{cuisineGroups}}" wx:key="name" wx:for-item="group">
+            <text class="group-label">{{group.name}}</text>
+            <view class="tags-group">
+              <view
+                class="tag-item {{selectedCuisines[item.value] ? 'active' : ''}}"
+                wx:for="{{group.items}}"
+                wx:key="value"
+                bindtap="toggleCuisine"
+                data-value="{{item.value}}"
+              >
+                <text>{{item.emoji}} {{item.label}}</text>
+              </view>
+            </view>
           </view>
         </view>
       </glass-card>
