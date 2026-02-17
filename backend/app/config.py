@@ -6,6 +6,7 @@ load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+AMAP_KEY = os.getenv("AMAP_KEY")
 
 class SupabaseClient:
     """纯 Python 的 Supabase REST API 客户端"""

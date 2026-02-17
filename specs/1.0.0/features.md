@@ -9,10 +9,10 @@
 ### 1. 成员管理（吃货档案）
 | 状态 | 功能 | API | 说明 |
 |:---:|------|-----|------|
-| 🔄 | 成员列表 | `GET /api/members/{user_id}` | 获取用户所有成员 |
-| 🔄 | 创建成员 | `POST /api/members` | 新建吃货档案 |
-| 🔄 | 编辑成员 | `PUT /api/members/{id}` | 修改档案信息 |
-| 🔄 | 删除成员 | `DELETE /api/members/{id}` | 删除成员 |
+| ✅ | 成员列表 | `GET /api/members/{user_id}` | 获取用户所有成员 |
+| ✅ | 创建成员 | `POST /api/members` | 新建吃货档案 |
+| ✅ | 编辑成员 | `PUT /api/members/{id}` | 修改档案信息 |
+| ✅ | 删除成员 | `DELETE /api/members/{id}` | 删除成员 |
 
 **数据字段**：姓名、口味偏好（辣度）、菜系偏好、饮食禁忌、预算范围、备注
 
