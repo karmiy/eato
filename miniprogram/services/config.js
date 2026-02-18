@@ -9,7 +9,7 @@ const ENV = {
   },
   // 手机预览时用这个（改成你电脑的局域网 IP）
   preview: {
-    baseUrl: 'http://192.168.1.100:8000/api'
+    baseUrl: 'http://192.168.2.244:8000/api'
   },
   prod: {
     baseUrl: 'https://your-server.com/api'  // 以后部署时替换
@@ -17,7 +17,7 @@ const ENV = {
 };
 
 // 当前环境：dev=模拟器, preview=手机预览, prod=正式
-const currentEnv = 'dev';
+const currentEnv = 'preview';
 
 module.exports = {
   baseUrl: ENV[currentEnv].baseUrl,
